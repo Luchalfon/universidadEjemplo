@@ -5,6 +5,13 @@
  */
 package universidadejemplo.vistas;
 
+
+import java.sql.Date;
+import universidadejemplo.Entidades.Alumno;
+import universidadejemplo.accesoADatos.AlumnoData;
+import universidadejemplo.accesoADatos.miConexion;
+
+
 /**
  *
  * @author ULP
@@ -16,6 +23,8 @@ public class alumnosVista extends javax.swing.JInternalFrame {
      */
     public alumnosVista() {
         initComponents();
+       // private Connection con;
+       // miConexion conexion = new miConexion();
     }
 
     /**
@@ -64,10 +73,20 @@ public class alumnosVista extends javax.swing.JInternalFrame {
         jButton1.setText("Buscar");
 
         jButton2.setText("Nuevo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Eliminar");
 
         jButton4.setText("Guardar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Salir");
 
@@ -76,6 +95,8 @@ public class alumnosVista extends javax.swing.JInternalFrame {
                 textNomActionPerformed(evt);
             }
         });
+
+        OptionEstado.setSelected(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,6 +190,26 @@ public class alumnosVista extends javax.swing.JInternalFrame {
     private void textNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textNomActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        textNom.setText("");
+        textApe.setText("");
+        textDocu.setText("");
+        textFecha.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        String fecha1 = textFecha.getText();
+        Date fecha = Date.valueOf(fecha1);
+        Alumno alumno = new Alumno(
+        Integer.parseInt(textDocu.getText()),
+        textApe.getText(),
+        textNom.getText(),
+        fecha,
+        true);
+        AlumnoData alumnoCon = new AlumnoData();
+        alumnoCon.guardarAlumno(alumno);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

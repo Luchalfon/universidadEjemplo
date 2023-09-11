@@ -1,7 +1,8 @@
 
 package universidadejemplo.Entidades;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 
 public class Alumno {
@@ -15,8 +16,9 @@ public class Alumno {
     public Alumno() {
     }
 
-    public Alumno(int dni, String nombre, Date fecha_nacimiento, boolean estado) {
+    public Alumno(int dni,String apellido, String nombre, Date fecha_nacimiento, boolean estado) {
         this.dni = dni;
+        this.apellido = apellido;
         this.nombre = nombre;
         this.fecha_nacimiento = fecha_nacimiento;
         this.estado = estado;

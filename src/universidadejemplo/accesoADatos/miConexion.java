@@ -4,40 +4,39 @@ package universidadejemplo.accesoADatos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 public class miConexion {
-    private String url;
-    private String usuario;
-    private String Pass;
+    private static final String URL="jdbd:mariadb://localhost:3306/";
+    private static final String DB="universidad_ulp";
+    private static final String USUARIO="root";
+    private static final String PASSWORD="";
     
-    
-    private static Connection conexion=null;
+    private static Connection connection;
 
-    public miConexion(String url, String usuario, String Pass) 
-    {
-        this.url = url;
-        this.usuario = usuario;
-        this.Pass = Pass;
+   private miConexion(){
         
     }    
-    public Connection buscarConexion(){
-        if(conexion==null){
-            try  {
-                
-                Class.forName(url);
-                conexion= DriverManager.getConnection(url,usuario,Pass);
-            } catch (SQLException | ClassNotFoundException  ex) {
-                Logger.getLogger(miConexion.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-              
-         }       
     
-         return conexion;  
-    
-    
-    }
+   public static Connection getConexion(){
+       
+     if(connection == null){
+         
+         try {
+             Class.forName("org.mariadb.jdbc.Driver");
+             //connection=DriverManager.getConnection(URL+DB,USUARIO,PASSWORD);
+             
+             connection = DriverManager.getConnection(URL+DB + "?useLegacyDatetimeCode=false&serverTimezone=UTC" +
+                            "&user=" + USUARIO + "&password=" + PASSWORD);
+             
+         } catch (ClassNotFoundException ex) {
+             JOptionPane.showMessageDialog(null,"Error al cargar los drivers");
+           } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null,"Error al conectarse");
+           }
+         
+        }  
+        return connection;
+   }
 }
