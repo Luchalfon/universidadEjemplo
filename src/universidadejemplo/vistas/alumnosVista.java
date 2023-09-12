@@ -6,7 +6,9 @@
 package universidadejemplo.vistas;
 
 
+import java.sql.Connection;
 import java.sql.Date;
+import javax.swing.JOptionPane;
 import universidadejemplo.Entidades.Alumno;
 import universidadejemplo.accesoADatos.AlumnoData;
 import universidadejemplo.accesoADatos.miConexion;
@@ -23,10 +25,11 @@ public class alumnosVista extends javax.swing.JInternalFrame {
      */
     public alumnosVista() {
         initComponents();
-       // private Connection con;
+       // 
        // miConexion conexion = new miConexion();
     }
-
+    private Connection con;
+    Alumno alumno1;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,6 +83,11 @@ public class alumnosVista extends javax.swing.JInternalFrame {
         });
 
         jButton3.setText("Eliminar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Guardar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -199,17 +207,28 @@ public class alumnosVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String fecha1 = textFecha.getText();
-        Date fecha = Date.valueOf(fecha1);
-        Alumno alumno = new Alumno(
-        Integer.parseInt(textDocu.getText()),
-        textApe.getText(),
-        textNom.getText(),
-        fecha,
-        true);
-        AlumnoData alumnoCon = new AlumnoData();
-        alumnoCon.guardarAlumno(alumno);
+//        String fecha1 = textFecha.getText();
+//        Date fecha = Date.valueOf(fecha1);
+//        Alumno alumno = new Alumno(
+//        Integer.parseInt(textDocu.getText()),
+//        textApe.getText(),
+//        textNom.getText(),
+//        fecha,
+//        true);
+//        AlumnoData alumnoCon = new AlumnoData();
+//        alumnoCon.guardarAlumno(alumno);
+        CrearAlumno(); 
+        AlumnoData alum=new AlumnoData();
+        alum.guardarAlumno(alumno1);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        String id= JOptionPane.showInputDialog(null,"ingrese el id del Alumno a eliminar");
+       int idAlu=Integer.parseInt(id);
+       AlumnoData alum=new AlumnoData();
+       alum.eliminarAlumno(idAlu);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -230,4 +249,16 @@ public class alumnosVista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField textFecha;
     private javax.swing.JTextField textNom;
     // End of variables declaration//GEN-END:variables
+
+public Alumno CrearAlumno() { 
+        int dni = Integer.parseInt(textDocu.getText());
+        String nombre = textNom.getText();
+        String apellido = textApe.getText();
+        String Fecha = textFecha.getText();
+        Date FechaNacimiento = Date.valueOf(Fecha);
+        
+        alumno1= new Alumno(dni,apellido,nombre,FechaNacimiento,true);
+        
+        return alumno1;
+       }
 }
