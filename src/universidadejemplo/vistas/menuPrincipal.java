@@ -5,6 +5,9 @@
  */
 package universidadejemplo.vistas;
 
+import java.sql.Connection;
+import universidadejemplo.accesoADatos.miConexion;
+
 /**
  *
  * @author ULP
@@ -16,8 +19,13 @@ public class menuPrincipal extends javax.swing.JFrame {
      */
     public menuPrincipal() {
         initComponents();
+        
+        con = miConexion.getConexion();
     }
 
+    
+     private Connection con;
+     miConexion Conexion =new miConexion();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -5,6 +5,9 @@
  */
 package universidadejemplo;
 
+import java.sql.Connection;
+import universidadejemplo.accesoADatos.miConexion;
+
 /**
  *
  * @author Luciano Chalfon
@@ -18,6 +21,7 @@ public class UniversidadEjemplo {
         // TODO code application logic here
         
         //Hola mundoo !!!
+        Connection con=miConexion.getConexion();
     }
     
 }
