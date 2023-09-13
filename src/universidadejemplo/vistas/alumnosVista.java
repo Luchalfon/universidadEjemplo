@@ -45,7 +45,7 @@ public class alumnosVista extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        botonBuscar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -73,7 +73,12 @@ public class alumnosVista extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Fecha de nacimiento");
 
-        jButton1.setText("Buscar");
+        botonBuscar.setText("Buscar");
+        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Nuevo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +136,7 @@ public class alumnosVista extends javax.swing.JInternalFrame {
                                             .addComponent(textApe, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                                             .addComponent(textDocu, javax.swing.GroupLayout.Alignment.LEADING))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton1)))
+                                        .addComponent(botonBuscar)))
                                 .addGap(61, 61, 61))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,7 +170,7 @@ public class alumnosVista extends javax.swing.JInternalFrame {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jButton1)
+                    .addComponent(botonBuscar)
                     .addComponent(textDocu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -236,10 +241,32 @@ public class alumnosVista extends javax.swing.JInternalFrame {
        
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+        
+        String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
+                new Object[] {"Buscar por dni","Buscar por id"}, "seleccion")).toString();
+        
+        switch (opciones) {
+            case "Buscar por dni":
+                String dni = JOptionPane.showInputDialog("Ingrese el dni");
+
+                int Minput = Integer.parseInt(dni);
+                System.out.println("Ingreso un dni " + dni);
+                break;
+            case "Buscar por id":
+                String id = JOptionPane.showInputDialog("Ingrese el id");
+                int miId = Integer.parseInt(id);
+                System.out.println("Ingreso un id " + id);
+                break;
+
+        }
+        
+    }//GEN-LAST:event_botonBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton OptionEstado;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton botonBuscar;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
