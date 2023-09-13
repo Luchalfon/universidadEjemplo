@@ -225,9 +225,15 @@ public class alumnosVista extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         String id= JOptionPane.showInputDialog(null,"ingrese el id del Alumno a eliminar");
-       int idAlu=Integer.parseInt(id);
-       AlumnoData alum=new AlumnoData();
-       alum.eliminarAlumno(idAlu);
+        //crear metodo de validacion ingreso mas tarde NumberFormatException
+        try {
+            int idAlu=Integer.parseInt(id);
+            AlumnoData alum=new AlumnoData();
+            alum.eliminarAlumno(idAlu);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingreso invalido, ingre un numero");
+        }
+       
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
