@@ -250,8 +250,14 @@ public class alumnosVista extends javax.swing.JInternalFrame {
             case "Buscar por dni":
                 String dni = JOptionPane.showInputDialog("Ingrese el dni");
 
-                int Minput = Integer.parseInt(dni);
+                int dni1 = Integer.parseInt(dni);
                 System.out.println("Ingreso un dni " + dni);
+                AlumnoData alum=new AlumnoData();
+                alumno1=alum.buscarAlumnoPorDni(dni1);
+                textApe.setText(alumno1.getApellido());
+                textDocu.setText(String.valueOf(alumno1.getDni()));
+                textNom.setText(alumno1.getNombre());
+                textFecha.setText(String.valueOf(alumno1.getFecha_nacimiento()));
                 break;
             case "Buscar por id":
                 String id = JOptionPane.showInputDialog("Ingrese el id");
