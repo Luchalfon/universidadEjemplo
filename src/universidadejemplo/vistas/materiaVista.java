@@ -6,7 +6,9 @@
 package universidadejemplo.vistas;
 
 import java.sql.Connection;
+import javax.swing.JOptionPane;
 import universidadejemplo.Entidades.Materia;
+import universidadejemplo.accesoADatos.AlumnoData;
 import universidadejemplo.accesoADatos.materiaData;
 
 /**
@@ -42,7 +44,7 @@ public class materiaVista extends javax.swing.JInternalFrame {
         botonEliminar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        textCodigo = new javax.swing.JTextField();
         textNom = new javax.swing.JTextField();
         textAño = new javax.swing.JTextField();
         jRadioButton1 = new javax.swing.JRadioButton();
@@ -89,6 +91,12 @@ public class materiaVista extends javax.swing.JInternalFrame {
 
         jButton5.setText("Salir");
 
+        textCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textCodigoActionPerformed(evt);
+            }
+        });
+
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel5.setText("Materia");
 
@@ -116,7 +124,7 @@ public class materiaVista extends javax.swing.JInternalFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addComponent(textAño)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(textCodigo, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButton1))))
@@ -138,7 +146,7 @@ public class materiaVista extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -166,6 +174,35 @@ public class materiaVista extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
+                new Object[] {"Buscar por nombre","Buscar por id"}, "seleccion")).toString();
+        
+        switch (opciones) {
+            case "Buscar por nombre":
+                String nombre = JOptionPane.showInputDialog("Ingrese el nombre");
+     
+            //    System.out.println("Ingreso un dni " + dni);
+                materiaData mate1=new materiaData();
+                materia1=mate1.buscarMateriaPorNombre(nombre);
+                textCodigo.setText(String.valueOf(materia1.getId_materia()));
+                textNom.setText(nombre);
+                textAño.setText(String.valueOf(materia1.getAño()));
+  
+                break;
+//            case "Buscar por id":
+//                String id = JOptionPane.showInputDialog("Ingrese el id");
+//                
+//                int miId = Integer.parseInt(id);
+//                System.out.println("Ingreso un id " + id);
+//                AlumnoData aluid=new AlumnoData();
+//                alumno1=aluid.buscarAlumnoPorID(miId);
+//                textCodigo.setText(materia1.getId_materia();
+//                textDocu.setText(String.valueOf(alumno1.getDni()));
+//                textNom.setText(alumno1.getNombre());
+//                textFecha.setText(String.valueOf(alumno1.getFecha_nacimiento()));
+//                break;
+
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -188,6 +225,10 @@ public class materiaVista extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_botonEliminarActionPerformed
 
+    private void textCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textCodigoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonEliminar;
@@ -201,8 +242,8 @@ public class materiaVista extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField textAño;
+    private javax.swing.JTextField textCodigo;
     private javax.swing.JTextField textNom;
     // End of variables declaration//GEN-END:variables
 
