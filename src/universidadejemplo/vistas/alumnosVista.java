@@ -261,8 +261,15 @@ public class alumnosVista extends javax.swing.JInternalFrame {
                 break;
             case "Buscar por id":
                 String id = JOptionPane.showInputDialog("Ingrese el id");
+                
                 int miId = Integer.parseInt(id);
                 System.out.println("Ingreso un id " + id);
+                AlumnoData aluid=new AlumnoData();
+                alumno1=aluid.buscarAlumnoPorID(miId);
+                textApe.setText(alumno1.getApellido());
+                textDocu.setText(String.valueOf(alumno1.getDni()));
+                textNom.setText(alumno1.getNombre());
+                textFecha.setText(String.valueOf(alumno1.getFecha_nacimiento()));
                 break;
 
         }
