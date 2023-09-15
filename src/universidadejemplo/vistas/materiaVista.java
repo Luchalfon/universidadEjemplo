@@ -23,9 +23,10 @@ public class materiaVista extends javax.swing.JInternalFrame {
     public materiaVista() {
         initComponents();
     }
-    
+
     private Connection con;
     Materia materia1;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -175,32 +176,33 @@ public class materiaVista extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
-                new Object[] {"Buscar por nombre","Buscar por id"}, "seleccion")).toString();
-        
+                new Object[]{"Buscar por nombre", "Buscar por id"}, "seleccion")).toString();
+
         switch (opciones) {
             case "Buscar por nombre":
                 String nombre = JOptionPane.showInputDialog("Ingrese el nombre");
-     
-            //    System.out.println("Ingreso un dni " + dni);
-                materiaData mate1=new materiaData();
-                materia1=mate1.buscarMateriaPorNombre(nombre);
+
+                //    System.out.println("Ingreso un dni " + dni);
+                materiaData mate1 = new materiaData();
+                materia1 = mate1.buscarMateriaPorNombre(nombre);
                 textCodigo.setText(String.valueOf(materia1.getId_materia()));
                 textNom.setText(nombre);
                 textAño.setText(String.valueOf(materia1.getAño()));
-  
+
                 break;
-//            case "Buscar por id":
-//                String id = JOptionPane.showInputDialog("Ingrese el id");
-//                
-//                int miId = Integer.parseInt(id);
-//                System.out.println("Ingreso un id " + id);
-//                AlumnoData aluid=new AlumnoData();
-//                alumno1=aluid.buscarAlumnoPorID(miId);
-//                textCodigo.setText(materia1.getId_materia();
-//                textDocu.setText(String.valueOf(alumno1.getDni()));
-//                textNom.setText(alumno1.getNombre());
-//                textFecha.setText(String.valueOf(alumno1.getFecha_nacimiento()));
-//                break;
+                
+            case "Buscar por id":
+                String id = JOptionPane.showInputDialog("Ingrese el id");
+
+                int miId = Integer.parseInt(id);
+                System.out.println("Ingreso un id " + miId);
+                materiaData mateid = new materiaData();
+                materia1 = mateid.buscarMateriaPorID(miId);
+                textCodigo.setText(miId+"");
+//                textCodigo.setText(String.valueOf(materia1.getId_materia()));
+                textNom.setText(materia1.getNombre());
+                textAño.setText(String.valueOf(materia1.getAño()));
+                break;
 
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -208,21 +210,21 @@ public class materiaVista extends javax.swing.JInternalFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         CrearMateria();
-        materiaData mate= new materiaData();
+        materiaData mate = new materiaData();
         mate.guardarMateria(materia1);
-              
-        
+
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         textNom.setText("");
         textAño.setText("");
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        
-        
+
+
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void textCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCodigoActionPerformed
@@ -247,13 +249,12 @@ public class materiaVista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField textNom;
     // End of variables declaration//GEN-END:variables
 
-public Materia CrearMateria() { 
+    public Materia CrearMateria() {
         String nombre = textNom.getText();
-        int año=Integer.parseInt(textAño.getText());
-        
-        
-        materia1=new Materia(nombre,año,true);
-        
+        int año = Integer.parseInt(textAño.getText());
+
+        materia1 = new Materia(nombre, año, true);
+
         return materia1;
-       }
+    }
 }
