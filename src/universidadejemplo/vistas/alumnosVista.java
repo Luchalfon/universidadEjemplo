@@ -104,6 +104,11 @@ public class alumnosVista extends javax.swing.JInternalFrame {
         });
 
         jButtonSalir.setText("Salir");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
 
         textNom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -318,6 +323,11 @@ public class alumnosVista extends javax.swing.JInternalFrame {
         alumData.modificarAlumno(alumno1);
         
     }//GEN-LAST:event_ButtonModificarActionPerformed
+
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButtonSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

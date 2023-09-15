@@ -41,10 +41,10 @@ public class materiaVista extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonNuevo = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jButtonGuardar = new javax.swing.JButton();
+        jButtonSalir = new javax.swing.JButton();
         textCodigo = new javax.swing.JTextField();
         textNom = new javax.swing.JTextField();
         textAño = new javax.swing.JTextField();
@@ -69,10 +69,10 @@ public class materiaVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Nuevo");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonNuevo.setText("Nuevo");
+        jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonNuevoActionPerformed(evt);
             }
         });
 
@@ -83,14 +83,19 @@ public class materiaVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton4.setText("Guardar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGuardar.setText("Guardar");
+        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonGuardarActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Salir");
+        jButtonSalir.setText("Salir");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
 
         textCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,13 +135,13 @@ public class materiaVista extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButton1))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(jButtonNuevo)
                                 .addGap(31, 31, 31)
                                 .addComponent(botonEliminar)
                                 .addGap(31, 31, 31)
-                                .addComponent(jButton4)
+                                .addComponent(jButtonGuardar)
                                 .addGap(33, 33, 33)
-                                .addComponent(jButton5)))))
+                                .addComponent(jButtonSalir)))))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -163,10 +168,10 @@ public class materiaVista extends javax.swing.JInternalFrame {
                     .addComponent(jRadioButton1))
                 .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(jButtonNuevo)
                     .addComponent(botonEliminar)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(jButtonGuardar)
+                    .addComponent(jButtonSalir))
                 .addGap(74, 74, 74))
         );
 
@@ -207,20 +212,20 @@ public class materiaVista extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // TODO add your handling code here:
         CrearMateria();
         materiaData mate = new materiaData();
         mate.guardarMateria(materia1);
 
 
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jButtonGuardarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
         textNom.setText("");
         textAño.setText("");
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonNuevoActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
 
@@ -231,13 +236,18 @@ public class materiaVista extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textCodigoActionPerformed
 
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButtonSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JButton jButtonNuevo;
+    private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
