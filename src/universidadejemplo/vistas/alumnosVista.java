@@ -5,14 +5,12 @@
  */
 package universidadejemplo.vistas;
 
-
 import java.sql.Connection;
 import java.sql.Date;
 import javax.swing.JOptionPane;
 import universidadejemplo.Entidades.Alumno;
 import universidadejemplo.accesoADatos.AlumnoData;
 import universidadejemplo.accesoADatos.miConexion;
-
 
 /**
  *
@@ -25,11 +23,12 @@ public class alumnosVista extends javax.swing.JInternalFrame {
      */
     public alumnosVista() {
         initComponents();
-       // 
-       // miConexion conexion = new miConexion();
+        // 
+        // miConexion conexion = new miConexion();
     }
     private Connection con;
     Alumno alumno1;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,6 +54,9 @@ public class alumnosVista extends javax.swing.JInternalFrame {
         textNom = new javax.swing.JTextField();
         OptionEstado = new javax.swing.JRadioButton();
         textFecha = new javax.swing.JTextField();
+        LabelLegajo = new javax.swing.JLabel();
+        TextLegajo = new javax.swing.JTextField();
+        ButtonModificar = new javax.swing.JButton();
 
         setClosable(true);
         setForeground(java.awt.Color.white);
@@ -111,89 +113,105 @@ public class alumnosVista extends javax.swing.JInternalFrame {
 
         OptionEstado.setSelected(true);
 
+        LabelLegajo.setText("Legajo");
+
+        ButtonModificar.setText("Modificar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(107, 107, 107)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jButton5))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(textApe, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                                            .addComponent(textDocu, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(botonBuscar)))
-                                .addGap(61, 61, 61))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(OptionEstado)
-                                    .addComponent(textNom, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
-                                .addGap(63, 63, 63)
-                                .addComponent(textFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(210, 210, 210))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(jLabel5)
+                                .addGap(133, 133, 133)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(70, 70, 70)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(43, 43, 43)
-                                        .addComponent(jButton3)
-                                        .addGap(39, 39, 39)
-                                        .addComponent(jButton4)))))
-                        .addContainerGap(132, Short.MAX_VALUE))))
+                                    .addComponent(textFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(OptionEstado))))
+                        .addGap(26, 26, 26))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ButtonModificar)
+                        .addGap(12, 12, 12)
+                        .addComponent(jButton4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)
+                        .addGap(18, 18, 18)))
+                .addComponent(jButton5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(LabelLegajo)
+                            .addComponent(jLabel4))
+                        .addGap(127, 127, 127)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textNom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textApe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textDocu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextLegajo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonBuscar)
+                .addGap(66, 66, 66))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(199, 199, 199)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel1)
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
-                    .addComponent(botonBuscar)
-                    .addComponent(textDocu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TextLegajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LabelLegajo))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textDocu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonBuscar))))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(textApe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(textNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(textNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(OptionEstado))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(textFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(textFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton3)
                     .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(jButton5)
+                    .addComponent(ButtonModificar)
+                    .addComponent(jButton3))
                 .addGap(30, 30, 30))
         );
 
@@ -205,6 +223,7 @@ public class alumnosVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_textNomActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        TextLegajo.setText("");
         textNom.setText("");
         textApe.setText("");
         textDocu.setText("");
@@ -222,38 +241,44 @@ public class alumnosVista extends javax.swing.JInternalFrame {
 //        true);
 //        AlumnoData alumnoCon = new AlumnoData();
 //        alumnoCon.guardarAlumno(alumno);
-        CrearAlumno(); 
-        AlumnoData alum=new AlumnoData();
+        CrearAlumno();
+        AlumnoData alum = new AlumnoData();
         alum.guardarAlumno(alumno1);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        String id= JOptionPane.showInputDialog(null,"ingrese el id del Alumno a eliminar");
+        String id = JOptionPane.showInputDialog(null, "ingrese el Legajo del Alumno a eliminar");
         //crear metodo de validacion ingreso mas tarde NumberFormatException
         try {
-            int idAlu=Integer.parseInt(id);
-            AlumnoData alum=new AlumnoData();
+            int idAlu = Integer.parseInt(id);
+            AlumnoData alum = new AlumnoData();
             alum.eliminarAlumno(idAlu);
+            TextLegajo.setText("");
+            textNom.setText("");
+            textApe.setText("");
+            textDocu.setText("");
+            textFecha.setText("");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingreso invalido, ingre un numero");
         }
-       
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        
+
         String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
-                new Object[] {"Buscar por dni","Buscar por id"}, "seleccion")).toString();
-        
+                new Object[]{"Buscar por dni", "Buscar por id"}, "seleccion")).toString();
+
         switch (opciones) {
             case "Buscar por dni":
                 String dni = JOptionPane.showInputDialog("Ingrese el dni");
 
                 int dni1 = Integer.parseInt(dni);
                 System.out.println("Ingreso un dni " + dni);
-                AlumnoData alum=new AlumnoData();
-                alumno1=alum.buscarAlumnoPorDni(dni1);
+                AlumnoData alum = new AlumnoData();
+                alumno1 = alum.buscarAlumnoPorDni(dni1);
+                TextLegajo.setText(alumno1.getId_alumno() + "");
                 textApe.setText(alumno1.getApellido());
                 textDocu.setText(String.valueOf(alumno1.getDni()));
                 textNom.setText(alumno1.getNombre());
@@ -261,11 +286,11 @@ public class alumnosVista extends javax.swing.JInternalFrame {
                 break;
             case "Buscar por id":
                 String id = JOptionPane.showInputDialog("Ingrese el id");
-                
+
                 int miId = Integer.parseInt(id);
                 System.out.println("Ingreso un id " + id);
-                AlumnoData aluid=new AlumnoData();
-                alumno1=aluid.buscarAlumnoPorID(miId);
+                AlumnoData aluid = new AlumnoData();
+                alumno1 = aluid.buscarAlumnoPorID(miId);
                 textApe.setText(alumno1.getApellido());
                 textDocu.setText(String.valueOf(alumno1.getDni()));
                 textNom.setText(alumno1.getNombre());
@@ -273,12 +298,15 @@ public class alumnosVista extends javax.swing.JInternalFrame {
                 break;
 
         }
-        
+
     }//GEN-LAST:event_botonBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonModificar;
+    private javax.swing.JLabel LabelLegajo;
     private javax.swing.JRadioButton OptionEstado;
+    private javax.swing.JTextField TextLegajo;
     private javax.swing.JButton botonBuscar;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -296,15 +324,15 @@ public class alumnosVista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField textNom;
     // End of variables declaration//GEN-END:variables
 
-public Alumno CrearAlumno() { 
+    public Alumno CrearAlumno() {
         int dni = Integer.parseInt(textDocu.getText());
         String nombre = textNom.getText();
         String apellido = textApe.getText();
         String Fecha = textFecha.getText();
         Date FechaNacimiento = Date.valueOf(Fecha);
-        
-        alumno1= new Alumno(dni,apellido,nombre,FechaNacimiento,true);
-        
+
+        alumno1 = new Alumno(dni, apellido, nombre, FechaNacimiento, true);
+
         return alumno1;
-       }
+    }
 }

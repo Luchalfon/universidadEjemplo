@@ -199,7 +199,7 @@ public class materiaVista extends javax.swing.JInternalFrame {
                 materiaData mateid = new materiaData();
                 materia1 = mateid.buscarMateriaPorID(miId);
                 textCodigo.setText(miId+"");
-//                textCodigo.setText(String.valueOf(materia1.getId_materia()));
+//              textCodigo.setText(String.valueOf(materia1.getId_materia()));
                 textNom.setText(materia1.getNombre());
                 textAño.setText(String.valueOf(materia1.getAño()));
                 break;
