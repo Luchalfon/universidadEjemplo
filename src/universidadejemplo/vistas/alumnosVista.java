@@ -116,6 +116,11 @@ public class alumnosVista extends javax.swing.JInternalFrame {
         LabelLegajo.setText("Legajo");
 
         ButtonModificar.setText("Modificar");
+        ButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonModificarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,16 +131,14 @@ public class alumnosVista extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(210, 210, 210))
+                            .addComponent(jLabel6)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(133, 133, 133)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(textFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(OptionEstado))))
-                        .addGap(26, 26, 26))
+                        .addGap(34, 34, 34))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -300,6 +303,20 @@ public class alumnosVista extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_botonBuscarActionPerformed
+
+    private void ButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonModificarActionPerformed
+        Alumno alumno1 = new Alumno();
+        AlumnoData alumData = new AlumnoData();
+        alumno1.setId_alumno(Integer.parseInt(TextLegajo.getText()));
+        alumno1.setDni(Integer.parseInt(textDocu.getText()));
+        alumno1.setApellido(textApe.getText());
+        alumno1.setNombre(textNom.getText());
+        alumno1.setEstado(true);
+        alumno1.setFecha_nacimiento(Date.valueOf(textFecha.getText()));
+        
+        alumData.modificarAlumno(alumno1);
+        
+    }//GEN-LAST:event_ButtonModificarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

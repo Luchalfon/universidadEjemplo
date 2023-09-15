@@ -115,11 +115,38 @@ public class AlumnoData {
                 JOptionPane.showMessageDialog(null, "No existe el alumno");
                 ps.close();
             }
-        }catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
 
-                    }
-
-            return alumno;
         }
+
+        return alumno;
     }
+
+    public void modificarAlumno(Alumno alumno) {
+
+        String sql = "UPDATE alumno SET dni = ? , apellido = ?, nombre = ?, fecha_nacimiento = ? WHERE id_alumno = ?";
+        PreparedStatement ps = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, alumno.getDni());
+            ps.setString(2, alumno.getApellido());
+            ps.setString(3, alumno.getNombre());
+            ps.setDate(4, alumno.getFecha_nacimiento());
+            ps.setInt(5, alumno.getId_alumno());
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "El alumno no existe");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
+        }
+
+    }
+ 
+}
