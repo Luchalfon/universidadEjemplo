@@ -45,10 +45,10 @@ public class alumnosVista extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         botonBuscar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jButtonNuevo = new javax.swing.JButton();
+        jButtonEliminar = new javax.swing.JButton();
+        jButtonGuardar = new javax.swing.JButton();
+        jButtonSalir = new javax.swing.JButton();
         textDocu = new javax.swing.JTextField();
         textApe = new javax.swing.JTextField();
         textNom = new javax.swing.JTextField();
@@ -82,28 +82,28 @@ public class alumnosVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Nuevo");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonNuevo.setText("Nuevo");
+        jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonNuevoActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Eliminar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonEliminarActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Guardar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGuardar.setText("Guardar");
+        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonGuardarActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Salir");
+        jButtonSalir.setText("Salir");
 
         textNom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,15 +140,15 @@ public class alumnosVista extends javax.swing.JInternalFrame {
                                     .addComponent(OptionEstado))))
                         .addGap(34, 34, 34))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(jButtonNuevo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(ButtonModificar)
                         .addGap(12, 12, 12)
-                        .addComponent(jButton4)
+                        .addComponent(jButtonGuardar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(jButtonEliminar)
                         .addGap(18, 18, 18)))
-                .addComponent(jButton5)
+                .addComponent(jButtonSalir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
@@ -210,11 +210,11 @@ public class alumnosVista extends javax.swing.JInternalFrame {
                         .addComponent(textFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
+                    .addComponent(jButtonNuevo)
+                    .addComponent(jButtonGuardar)
+                    .addComponent(jButtonSalir)
                     .addComponent(ButtonModificar)
-                    .addComponent(jButton3))
+                    .addComponent(jButtonEliminar))
                 .addGap(30, 30, 30))
         );
 
@@ -225,15 +225,15 @@ public class alumnosVista extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textNomActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
         TextLegajo.setText("");
         textNom.setText("");
         textApe.setText("");
         textDocu.setText("");
         textFecha.setText("");
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonNuevoActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
 //        String fecha1 = textFecha.getText();
 //        Date fecha = Date.valueOf(fecha1);
 //        Alumno alumno = new Alumno(
@@ -247,9 +247,9 @@ public class alumnosVista extends javax.swing.JInternalFrame {
         CrearAlumno();
         AlumnoData alum = new AlumnoData();
         alum.guardarAlumno(alumno1);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jButtonGuardarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // TODO add your handling code here:
         String id = JOptionPane.showInputDialog(null, "ingrese el Legajo del Alumno a eliminar");
         //crear metodo de validacion ingreso mas tarde NumberFormatException
@@ -266,7 +266,7 @@ public class alumnosVista extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Ingreso invalido, ingre un numero");
         }
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
 
@@ -326,10 +326,10 @@ public class alumnosVista extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton OptionEstado;
     private javax.swing.JTextField TextLegajo;
     private javax.swing.JButton botonBuscar;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButtonEliminar;
+    private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JButton jButtonNuevo;
+    private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
