@@ -294,6 +294,7 @@ public class alumnosVista extends javax.swing.JInternalFrame {
                 System.out.println("Ingreso un id " + id);
                 AlumnoData aluid = new AlumnoData();
                 alumno1 = aluid.buscarAlumnoPorID(miId);
+                TextLegajo.setText(id);
                 textApe.setText(alumno1.getApellido());
                 textDocu.setText(String.valueOf(alumno1.getDni()));
                 textNom.setText(alumno1.getNombre());
