@@ -24,18 +24,18 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
     /**
      * Creates new form inscripcionVista
      */
-    
-    private DefaultTableModel modelo=new DefaultTableModel();
-    
+    private DefaultTableModel modelo = new DefaultTableModel();
+
     public inscripcionVista() {
         initComponents();
         llenarCombo();
         armarCabecera();
-        
+
     }
     private Connection con;
     Alumno aluSelect;
     int id_aluSelect;
+    int idMateriaSelect;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,8 +55,8 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        BotonInsc = new javax.swing.JButton();
+        BotonAnularInsc = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setClosable(true);
@@ -96,6 +96,11 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -104,9 +109,9 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Inscribir");
+        BotonInsc.setText("Inscribir");
 
-        jButton2.setText("Anular Inscripcion");
+        BotonAnularInsc.setText("Anular Inscripcion");
 
         jButton3.setText("Salir");
 
@@ -138,9 +143,9 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(BotonInsc)
                                 .addGap(102, 102, 102)
-                                .addComponent(jButton2)
+                                .addComponent(BotonAnularInsc)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton3)
                                 .addGap(21, 21, 21)))))
@@ -165,8 +170,8 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
+                    .addComponent(BotonInsc)
+                    .addComponent(BotonAnularInsc)
                     .addComponent(jButton3))
                 .addGap(41, 41, 41))
         );
@@ -187,20 +192,35 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         modelo.setRowCount(0);
         llenarCursada();
-        
+        BotonAnularInsc.setEnabled(true);
+        BotonInsc.setEnabled(false);
+
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         // TODO add your handling code here:
         modelo.setRowCount(0);
         llenarNoCursada();
+        BotonAnularInsc.setEnabled(false);
+        BotonInsc.setEnabled(true);
     }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int filaSelect = jTable1.getSelectedRow();
+
+        if (filaSelect != -1) {
+
+            idMateriaSelect = (Integer) jTable1.getValueAt(filaSelect, 0);
+            System.out.println("el id de la materia select es: " + idMateriaSelect);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonAnularInsc;
+    private javax.swing.JButton BotonInsc;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<Alumno> jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -223,13 +243,13 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
             jComboBox1.addItem(alu);
         }
     }
-    
-    private void armarCabecera(){
-    modelo.addColumn("ID");   
-    modelo.addColumn("Nombre");
-    modelo.addColumn("Año");
-    
-    jTable1.setModel(modelo);
+
+    private void armarCabecera() {
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Año");
+
+        jTable1.setModel(modelo);
     }
 
     private void llenarCursada() {
