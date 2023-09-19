@@ -5,6 +5,16 @@
  */
 package universidadejemplo.vistas;
 
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import universidadejemplo.Entidades.Alumno;
+import universidadejemplo.Entidades.Materia;
+import universidadejemplo.accesoADatos.AlumnoData;
+import universidadejemplo.accesoADatos.inscripcionData;
+import universidadejemplo.accesoADatos.materiaData;
+
 /**
  *
  * @author ULP
@@ -14,9 +24,18 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
     /**
      * Creates new form inscripcionVista
      */
+    
+    private DefaultTableModel modelo=new DefaultTableModel();
+    
     public inscripcionVista() {
         initComponents();
+        llenarCombo();
+        armarCabecera();
+        
     }
+    private Connection con;
+    Alumno aluSelect;
+    int id_aluSelect;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,6 +46,7 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -49,9 +69,21 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Listado de materias");
 
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Materias inscriptas");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Materias no inscriptas");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -66,7 +98,11 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Inscribir");
 
@@ -138,12 +174,35 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        aluSelect = (Alumno) jComboBox1.getSelectedItem();
+        id_aluSelect = aluSelect.getId_alumno();
+        System.out.println(id_aluSelect);
+        modelo.setRowCount(0);
+//        llenarTabla();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+        modelo.setRowCount(0);
+        llenarCursada();
+        
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+        modelo.setRowCount(0);
+        llenarNoCursada();
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Alumno> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -152,4 +211,43 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    public void llenarCombo() {
+        List<Alumno> alumno = new ArrayList<>();
+
+        AlumnoData aludata = new AlumnoData();
+        alumno = aludata.listarAlumnos();
+
+        for (Alumno alu : alumno) {
+
+            jComboBox1.addItem(alu);
+        }
+    }
+    
+    private void armarCabecera(){
+    modelo.addColumn("ID");   
+    modelo.addColumn("Nombre");
+    modelo.addColumn("Año");
+    
+    jTable1.setModel(modelo);
+    }
+
+    private void llenarCursada() {
+        inscripcionData inscData = new inscripcionData();
+        for (Materia mateCursa : inscData.obtenerMateriasCursadas(id_aluSelect)) {
+            modelo.addRow(new Object[]{mateCursa.getId_materia(), mateCursa.getNombre(), mateCursa.getAño()});
+
+        }
+
+    }
+
+    private void llenarNoCursada() {
+        inscripcionData inscData = new inscripcionData();
+        for (Materia mateCursa : inscData.obtenerMateriasNOCursadas(id_aluSelect)) {
+            modelo.addRow(new Object[]{mateCursa.getId_materia(), mateCursa.getNombre(), mateCursa.getAño()});
+
+        }
+
+    }
+
 }
