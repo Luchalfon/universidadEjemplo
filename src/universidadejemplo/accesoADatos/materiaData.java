@@ -60,7 +60,7 @@ public class materiaData {
 
             if (rs.next()) {
                 materia = new Materia();
-                materia.setId_materia(rs.getInt(id));
+                materia.setId_materia(rs.getInt("id_materia"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAño(rs.getInt("año"));
                 materia.setEstado(true);
@@ -129,4 +129,20 @@ public class materiaData {
  return materias;
  } 
     
+
+public void eliminarMateria(int id) {
+        try {
+            String sql = "UPDATE materia SET estado = 0 WHERE id_materia = ? ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int fila = ps.executeUpdate();
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " Se eliminó la materia");
+            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Materia");
+        }
+
+    }
 }

@@ -48,7 +48,7 @@ public class materiaVista extends javax.swing.JInternalFrame {
         textCodigo = new javax.swing.JTextField();
         textNom = new javax.swing.JTextField();
         textAño = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        botonEstado = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -131,7 +131,7 @@ public class materiaVista extends javax.swing.JInternalFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addComponent(textAño)
                                             .addComponent(textCodigo, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(botonEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButton1))))
                             .addGroup(layout.createSequentialGroup()
@@ -165,7 +165,7 @@ public class materiaVista extends javax.swing.JInternalFrame {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jRadioButton1))
+                    .addComponent(botonEstado))
                 .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonNuevo)
@@ -193,9 +193,10 @@ public class materiaVista extends javax.swing.JInternalFrame {
                 textCodigo.setText(String.valueOf(materia1.getId_materia()));
                 textNom.setText(nombre);
                 textAño.setText(String.valueOf(materia1.getAño()));
+                botonEstado.setSelected(true);
 
                 break;
-                
+
             case "Buscar por id":
                 String id = JOptionPane.showInputDialog("Ingrese el id");
 
@@ -203,10 +204,11 @@ public class materiaVista extends javax.swing.JInternalFrame {
                 System.out.println("Ingreso un id " + miId);
                 materiaData mateid = new materiaData();
                 materia1 = mateid.buscarMateriaPorID(miId);
-                textCodigo.setText(miId+"");
+                textCodigo.setText(miId + "");
 //              textCodigo.setText(String.valueOf(materia1.getId_materia()));
                 textNom.setText(materia1.getNombre());
                 textAño.setText(String.valueOf(materia1.getAño()));
+                botonEstado.setSelected(true);
                 break;
 
         }
@@ -222,6 +224,7 @@ public class materiaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
+        textCodigo.setText("");
         textNom.setText("");
         textAño.setText("");
 
@@ -229,7 +232,20 @@ public class materiaVista extends javax.swing.JInternalFrame {
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
 
+        String id = JOptionPane.showInputDialog(null, "ingrese el ID de la materia a eliminar");
 
+        try {
+            int idmate = Integer.parseInt(id);
+            materiaData md = new materiaData();
+            md.eliminarMateria(idmate);
+            textCodigo.setText("");
+            textNom.setText("");
+            textAño.setText("");
+            JOptionPane.showMessageDialog(null, "Se eliminó la materia");
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingreso invalido, ingre un numero");
+        }
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void textCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCodigoActionPerformed
@@ -244,6 +260,7 @@ public class materiaVista extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonEliminar;
+    private javax.swing.JRadioButton botonEstado;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonNuevo;
@@ -253,7 +270,6 @@ public class materiaVista extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JTextField textAño;
     private javax.swing.JTextField textCodigo;
     private javax.swing.JTextField textNom;
