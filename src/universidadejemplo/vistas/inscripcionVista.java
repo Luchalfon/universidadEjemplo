@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import universidadejemplo.Entidades.Alumno;
 import universidadejemplo.Entidades.Materia;
+import universidadejemplo.Entidades.Inscripcion;
 import universidadejemplo.accesoADatos.AlumnoData;
 import universidadejemplo.accesoADatos.inscripcionData;
 import universidadejemplo.accesoADatos.materiaData;
@@ -36,6 +37,8 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
     Alumno aluSelect;
     int id_aluSelect;
     int idMateriaSelect;
+    Materia materiasl = new Materia();
+    materiaData mateData = new materiaData();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,7 +60,7 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         BotonInsc = new javax.swing.JButton();
         BotonAnularInsc = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        botonSalir = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Inscripcion");
@@ -110,10 +113,25 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
         });
 
         BotonInsc.setText("Inscribir");
+        BotonInsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonInscActionPerformed(evt);
+            }
+        });
 
         BotonAnularInsc.setText("Anular Inscripcion");
+        BotonAnularInsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonAnularInscActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Salir");
+        botonSalir.setText("Salir");
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,7 +165,7 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
                                 .addGap(102, 102, 102)
                                 .addComponent(BotonAnularInsc)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3)
+                                .addComponent(botonSalir)
                                 .addGap(21, 21, 21)))))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
@@ -172,7 +190,7 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonInsc)
                     .addComponent(BotonAnularInsc)
-                    .addComponent(jButton3))
+                    .addComponent(botonSalir))
                 .addGap(41, 41, 41))
         );
 
@@ -206,22 +224,42 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
+        
         int filaSelect = jTable1.getSelectedRow();
 
         if (filaSelect != -1) {
 
             idMateriaSelect = (Integer) jTable1.getValueAt(filaSelect, 0);
-            System.out.println("el id de la materia select es: " + idMateriaSelect);
+            materiasl = mateData.buscarMateriaPorID(idMateriaSelect);
+            
         }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botonSalirActionPerformed
+
+    private void BotonInscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInscActionPerformed
+        Inscripcion insc = new Inscripcion(0,aluSelect, materiasl);
+        inscripcionData inscData = new inscripcionData();
+        inscData.guardarInscripcion(insc);
+        modelo.setRowCount(0);
+        llenarNoCursada();
+    }//GEN-LAST:event_BotonInscActionPerformed
+
+    private void BotonAnularInscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAnularInscActionPerformed
+        inscripcionData inscData = new inscripcionData();
+        inscData.borrarInscripcionAlumnoMateria(id_aluSelect, idMateriaSelect);
+        modelo.setRowCount(0);
+        llenarCursada();
+    }//GEN-LAST:event_BotonAnularInscActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAnularInsc;
     private javax.swing.JButton BotonInsc;
+    private javax.swing.JButton botonSalir;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<Alumno> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

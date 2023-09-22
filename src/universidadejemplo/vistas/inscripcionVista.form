@@ -61,7 +61,7 @@
                               <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                               <Component id="BotonAnularInsc" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonSalir" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -94,7 +94,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="BotonInsc" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="BotonAnularInsc" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonSalir" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
           </Group>
@@ -183,16 +183,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Inscribir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonInscActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BotonAnularInsc">
       <Properties>
         <Property name="text" type="java.lang.String" value="Anular Inscripcion"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonAnularInscActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="botonSalir">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonSalirActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
