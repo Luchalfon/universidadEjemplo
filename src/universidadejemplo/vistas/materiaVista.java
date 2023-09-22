@@ -6,6 +6,7 @@
 package universidadejemplo.vistas;
 
 import java.sql.Connection;
+import java.sql.Date;
 import javax.swing.JOptionPane;
 import universidadejemplo.Entidades.Materia;
 import universidadejemplo.accesoADatos.AlumnoData;
@@ -50,6 +51,7 @@ public class materiaVista extends javax.swing.JInternalFrame {
         textAño = new javax.swing.JTextField();
         botonEstado = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
+        modificarBoton = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Materia");
@@ -106,6 +108,13 @@ public class materiaVista extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel5.setText("Materia");
 
+        modificarBoton.setText("Modificar");
+        modificarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarBotonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,30 +127,31 @@ public class materiaVista extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(82, 82, 82)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(54, 54, 54)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(textNom, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
-                                .addGap(54, 54, 54)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(textNom, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(textAño)
-                                            .addComponent(textCodigo, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(botonEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton1))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonNuevo)
-                                .addGap(31, 31, 31)
-                                .addComponent(botonEliminar)
-                                .addGap(31, 31, 31)
-                                .addComponent(jButtonGuardar)
-                                .addGap(33, 33, 33)
-                                .addComponent(jButtonSalir)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(textAño)
+                                    .addComponent(textCodigo, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(botonEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jButtonNuevo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(modificarBoton)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonGuardar)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonEliminar)
+                        .addGap(16, 16, 16)
+                        .addComponent(jButtonSalir)))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -169,9 +179,10 @@ public class materiaVista extends javax.swing.JInternalFrame {
                 .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonNuevo)
-                    .addComponent(botonEliminar)
                     .addComponent(jButtonGuardar)
-                    .addComponent(jButtonSalir))
+                    .addComponent(jButtonSalir)
+                    .addComponent(modificarBoton)
+                    .addComponent(botonEliminar))
                 .addGap(74, 74, 74))
         );
 
@@ -257,6 +268,16 @@ public class materiaVista extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
+    private void modificarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarBotonActionPerformed
+        Materia materia = new Materia();
+        materiaData mateData = new materiaData();
+        materia.setNombre(textNom.getText());
+        materia.setId_materia(Integer.parseInt(textCodigo.getText()));
+        materia.setEstado(true);
+        materia.setAño(Integer.parseInt(textAño.getText()));
+        mateData.modificarMateria(materia);
+    }//GEN-LAST:event_modificarBotonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonEliminar;
@@ -270,6 +291,7 @@ public class materiaVista extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JButton modificarBoton;
     private javax.swing.JTextField textAño;
     private javax.swing.JTextField textCodigo;
     private javax.swing.JTextField textNom;
