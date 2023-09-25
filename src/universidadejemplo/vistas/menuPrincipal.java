@@ -19,7 +19,7 @@ public class menuPrincipal extends javax.swing.JFrame {
      */
     public menuPrincipal() {
         initComponents();
-        
+        setExtendedState(MAXIMIZED_BOTH);
         con = miConexion.getConexion();
     }
 
@@ -126,6 +126,16 @@ public class menuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Salir");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jMenu5MouseExited(evt);
+            }
+        });
+        jMenu5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu5ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -222,6 +232,16 @@ public class menuPrincipal extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jMenu5ActionPerformed
+
+    private void jMenu5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseExited
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMenu5MouseExited
 
     /**
      * @param args the command line arguments
