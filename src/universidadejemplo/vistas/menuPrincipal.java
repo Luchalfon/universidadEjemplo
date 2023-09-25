@@ -127,6 +127,9 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         jMenu5.setText("Salir");
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jMenu5MouseExited(evt);
             }
@@ -240,8 +243,13 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void jMenu5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseExited
         // TODO add your handling code here:
-        System.exit(0);
+       // System.exit(0);
     }//GEN-LAST:event_jMenu5MouseExited
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMenu5MouseClicked
 
     /**
      * @param args the command line arguments
