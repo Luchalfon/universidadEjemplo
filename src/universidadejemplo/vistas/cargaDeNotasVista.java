@@ -5,6 +5,14 @@
  */
 package universidadejemplo.vistas;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import universidadejemplo.Entidades.Alumno;
+import universidadejemplo.Entidades.Inscripcion;
+import universidadejemplo.accesoADatos.AlumnoData;
+import universidadejemplo.accesoADatos.inscripcionData;
+
 /**
  *
  * @author ULP
@@ -16,7 +24,13 @@ public class cargaDeNotasVista extends javax.swing.JInternalFrame {
      */
     public cargaDeNotasVista() {
         initComponents();
+        llenarCombo();
+        armarCabecera();
     }
+    private DefaultTableModel modelo = new DefaultTableModel();
+    private AlumnoData alumData= new AlumnoData();
+    private Alumno aluSelect;
+    private int id_aluSelect;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,7 +43,7 @@ public class cargaDeNotasVista extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboAlumno = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -43,7 +57,11 @@ public class cargaDeNotasVista extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Seleccione un alumno");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAlumnoActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -79,7 +97,7 @@ public class cargaDeNotasVista extends javax.swing.JInternalFrame {
                         .addGap(73, 73, 73)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(comboAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -99,7 +117,7 @@ public class cargaDeNotasVista extends javax.swing.JInternalFrame {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(79, 79, 79)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
@@ -116,14 +134,50 @@ public class cargaDeNotasVista extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_botonSalirActionPerformed
 
+    private void comboAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAlumnoActionPerformed
+        aluSelect = (Alumno) comboAlumno.getSelectedItem();
+        id_aluSelect = aluSelect.getId_alumno();
+        System.out.println(id_aluSelect);
+        modelo.setRowCount(0);
+        llenarTabla();
+    }//GEN-LAST:event_comboAlumnoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonSalir;
+    private javax.swing.JComboBox<Alumno> comboAlumno;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+     public void llenarCombo(){
+        List<Alumno> alumno = new ArrayList<>();
+
+        AlumnoData aludata = new AlumnoData();
+        alumno = aludata.listarAlumnos();
+
+        for (Alumno alu : alumno) {
+
+            comboAlumno.addItem(alu);
+        }
+    }
+    private void armarCabecera(){
+        this.modelo.addColumn("Codigo");
+        this.modelo.addColumn("Nombre");
+        this.modelo.addColumn("Nota");
+        jTable1.setModel(this.modelo);
+    }
+    
+    private void llenarTabla(){
+        List<Inscripcion> insc = new inscripcionData().obtenerInscripcionesPorAlumno(id_aluSelect);
+        insc.forEach(inscripcion -> modelo.addRow(new Object[]{inscripcion.getId_inscripcion(),inscripcion.getMateria().getNombre(),inscripcion.getNota()}));
+       // inscripcionData inscData = new inscripcionData();
+        //for (Materia mateCursa : inscData.obtenerMateriasCursadas(id_aluSelect)) {
+        //    modelo.addRow(new Object[]{mateCursa.getId_materia(), mateCursa.getNombre(), ""});
+
+        //}
+    }
+
 }

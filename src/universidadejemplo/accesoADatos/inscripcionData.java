@@ -109,6 +109,7 @@ public class inscripcionData {
                 insc.setAlumno(alu);
                 insc.setMateria(mat);
                 insc.setNota(rs.getDouble("nota"));
+                cursadas.add(insc);
             }
             ps.close();
         } catch (SQLException ex) {
@@ -138,6 +139,7 @@ public class inscripcionData {
                 insc.setAlumno(alu);
                 insc.setMateria(mat);
                 insc.setNota(rs.getDouble("nota"));
+                cursadas.add(insc);
             }
             ps.close();
 
