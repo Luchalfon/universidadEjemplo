@@ -31,6 +31,9 @@ public class cargaDeNotasVista extends javax.swing.JInternalFrame {
     private AlumnoData alumData= new AlumnoData();
     private Alumno aluSelect;
     private int id_aluSelect;
+    private double cambioNota;
+    private int idMateriaSelect;
+    int filaSelect;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,9 +77,19 @@ public class cargaDeNotasVista extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         botonSalir.setText("Salir");
         botonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +154,28 @@ public class cargaDeNotasVista extends javax.swing.JInternalFrame {
         modelo.setRowCount(0);
         llenarTabla();
     }//GEN-LAST:event_comboAlumnoActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        filaSelect = jTable1.getSelectedRow();
+
+        if (filaSelect != -1) {
+
+            idMateriaSelect = (Integer) jTable1.getValueAt(filaSelect, 0);
+            //cambioNota = (Double) jTable1.getValueAt(filaSelect, 2);
+            
+            
+            
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        cambioNota = Double.parseDouble(jTable1.getValueAt(filaSelect, 2).toString());
+        inscripcionData insc = new inscripcionData();
+        System.out.println("nota seleccionada 2 "+cambioNota);
+        insc.actualizarNota(id_aluSelect, idMateriaSelect, cambioNota);
+        modelo.setRowCount(0);
+        llenarTabla();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
