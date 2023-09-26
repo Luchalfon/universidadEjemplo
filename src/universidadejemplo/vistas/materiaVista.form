@@ -90,7 +90,7 @@
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <Component id="botonEstado" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="58" max="32767" attributes="0"/>
+              <EmptySpace pref="62" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonNuevo" alignment="3" min="-2" pref="65" max="-2" attributes="0"/>
                   <Component id="jButtonGuardar" alignment="3" min="-2" pref="65" max="-2" attributes="0"/>
