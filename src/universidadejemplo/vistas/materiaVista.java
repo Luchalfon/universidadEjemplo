@@ -318,6 +318,14 @@ public class materiaVista extends javax.swing.JInternalFrame {
         materia.setEstado(true);
         materia.setAño(Integer.parseInt(textAño.getText()));
         mateData.modificarMateria(materia);
+        
+         Nuevo.setEnabled(true);
+        Modificar.setEnabled(false);
+        Guardar.setEnabled(false);
+        Eliminar.setEnabled(false);
+        textCodigo.setText("");
+        textNom.setText("");
+        textAño.setText("");
     }//GEN-LAST:event_ModificarActionPerformed
 
 
