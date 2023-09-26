@@ -23,6 +23,10 @@ public class materiaVista extends javax.swing.JInternalFrame {
      */
     public materiaVista() {
         initComponents();
+        Modificar.setEnabled(false);
+        Guardar.setEnabled(false);
+        Eliminar.setEnabled(false);
+        
     }
 
     private Connection con;
@@ -41,17 +45,17 @@ public class materiaVista extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButtonNuevo = new javax.swing.JButton();
-        botonEliminar = new javax.swing.JButton();
-        jButtonGuardar = new javax.swing.JButton();
-        jButtonSalir = new javax.swing.JButton();
+        Buscar = new javax.swing.JButton();
+        Nuevo = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
+        Guardar = new javax.swing.JButton();
+        Salir = new javax.swing.JButton();
         textCodigo = new javax.swing.JTextField();
         textNom = new javax.swing.JTextField();
         textAño = new javax.swing.JTextField();
         botonEstado = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
-        modificarBoton = new javax.swing.JButton();
+        Modificar = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Materia");
@@ -68,61 +72,66 @@ public class materiaVista extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setText("Estado");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadejemplo/diseño/buscar.png"))); // NOI18N
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadejemplo/diseño/buscar.png"))); // NOI18N
+        Buscar.setText("Buscar");
+        Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BuscarActionPerformed(evt);
             }
         });
 
-        jButtonNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadejemplo/diseño/new_25355.png"))); // NOI18N
-        jButtonNuevo.setText("Nuevo");
-        jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
+        Nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadejemplo/diseño/new_25355.png"))); // NOI18N
+        Nuevo.setText("Nuevo");
+        Nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNuevoActionPerformed(evt);
+                NuevoActionPerformed(evt);
             }
         });
 
-        botonEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadejemplo/diseño/eliminar.png"))); // NOI18N
-        botonEliminar.setText("Eliminar");
-        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+        Eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadejemplo/diseño/eliminar.png"))); // NOI18N
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminarActionPerformed(evt);
+                EliminarActionPerformed(evt);
             }
         });
 
-        jButtonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadejemplo/diseño/guardar.png"))); // NOI18N
-        jButtonGuardar.setText("Guardar");
-        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+        Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadejemplo/diseño/guardar.png"))); // NOI18N
+        Guardar.setText("Guardar");
+        Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGuardarActionPerformed(evt);
+                GuardarActionPerformed(evt);
             }
         });
 
-        jButtonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadejemplo/diseño/salir.png"))); // NOI18N
-        jButtonSalir.setText("Salir");
-        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+        Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadejemplo/diseño/salir.png"))); // NOI18N
+        Salir.setText("Salir");
+        Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalirActionPerformed(evt);
+                SalirActionPerformed(evt);
             }
         });
 
+        textCodigo.setEditable(false);
+        textCodigo.setEnabled(false);
         textCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textCodigoActionPerformed(evt);
             }
         });
 
+        botonEstado.setSelected(true);
+        botonEstado.setEnabled(false);
+
         jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Materia");
 
-        modificarBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadejemplo/diseño/modificar.png"))); // NOI18N
-        modificarBoton.setText("Modificar");
-        modificarBoton.addActionListener(new java.awt.event.ActionListener() {
+        Modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadejemplo/diseño/modificar.png"))); // NOI18N
+        Modificar.setText("Modificar");
+        Modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificarBotonActionPerformed(evt);
+                ModificarActionPerformed(evt);
             }
         });
 
@@ -132,7 +141,7 @@ public class materiaVista extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(9, 9, 9)
-                .addComponent(jButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -143,23 +152,26 @@ public class materiaVista extends javax.swing.JInternalFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(textNom, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(textAño, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(textCodigo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(botonEstado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(textNom, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(2, 2, 2)
+                        .addComponent(Buscar))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(modificarBoton)
+                        .addComponent(Modificar)
                         .addGap(12, 12, 12)
-                        .addComponent(jButtonGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonEliminar)
+                        .addComponent(Guardar)
+                        .addGap(14, 14, 14)
+                        .addComponent(Eliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -171,7 +183,7 @@ public class materiaVista extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(textCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(Buscar))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -184,20 +196,20 @@ public class materiaVista extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addComponent(botonEstado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modificarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(74, 74, 74))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
         // TODO add your handling code here:
         String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
                 new Object[]{"Buscar por nombre", "Buscar por id"}, "seleccion")).toString();
@@ -231,25 +243,42 @@ public class materiaVista extends javax.swing.JInternalFrame {
                 break;
 
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        Modificar.setEnabled(true);
+        Eliminar.setEnabled(true);
+        Nuevo.setEnabled(true);
+        Guardar.setEnabled(false);
+    }//GEN-LAST:event_BuscarActionPerformed
 
-    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
+    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
         // TODO add your handling code here:
         CrearMateria();
         materiaData mate = new materiaData();
         mate.guardarMateria(materia1);
-
-
-    }//GEN-LAST:event_jButtonGuardarActionPerformed
-
-    private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
+        
         textCodigo.setText("");
         textNom.setText("");
         textAño.setText("");
+        Buscar.setEnabled(true);
+        Nuevo.setEnabled(true);
+        Modificar.setEnabled(false);
+        Guardar.setEnabled(false);
+        Eliminar.setEnabled(false);
 
-    }//GEN-LAST:event_jButtonNuevoActionPerformed
+    }//GEN-LAST:event_GuardarActionPerformed
 
-    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+    private void NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoActionPerformed
+        textCodigo.setText("");
+        textNom.setText("");
+        textAño.setText("");
+        Modificar.setEnabled(false);
+        Buscar.setEnabled(false);
+        Eliminar.setEnabled(false);
+        textNom.requestFocus();
+        Guardar.setEnabled(true);
+        
+    }//GEN-LAST:event_NuevoActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
 
         String id = JOptionPane.showInputDialog(null, "ingrese el ID de la materia a eliminar");
 
@@ -260,23 +289,28 @@ public class materiaVista extends javax.swing.JInternalFrame {
             textCodigo.setText("");
             textNom.setText("");
             textAño.setText("");
+            Buscar.setEnabled(true);
+            Nuevo.setEnabled(true);
+            Modificar.setEnabled(false);
+            Guardar.setEnabled(false);
+            Eliminar.setEnabled(false);
             JOptionPane.showMessageDialog(null, "Se eliminó la materia");
             
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingreso invalido, ingre un numero");
         }
-    }//GEN-LAST:event_botonEliminarActionPerformed
+    }//GEN-LAST:event_EliminarActionPerformed
 
     private void textCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textCodigoActionPerformed
 
-    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_jButtonSalirActionPerformed
+    }//GEN-LAST:event_SalirActionPerformed
 
-    private void modificarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarBotonActionPerformed
+    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
         Materia materia = new Materia();
         materiaData mateData = new materiaData();
         materia.setNombre(textNom.getText());
@@ -284,22 +318,22 @@ public class materiaVista extends javax.swing.JInternalFrame {
         materia.setEstado(true);
         materia.setAño(Integer.parseInt(textAño.getText()));
         mateData.modificarMateria(materia);
-    }//GEN-LAST:event_modificarBotonActionPerformed
+    }//GEN-LAST:event_ModificarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonEliminar;
+    private javax.swing.JButton Buscar;
+    private javax.swing.JButton Eliminar;
+    private javax.swing.JButton Guardar;
+    private javax.swing.JButton Modificar;
+    private javax.swing.JButton Nuevo;
+    private javax.swing.JButton Salir;
     private javax.swing.JRadioButton botonEstado;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButtonGuardar;
-    private javax.swing.JButton jButtonNuevo;
-    private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JButton modificarBoton;
     private javax.swing.JTextField textAño;
     private javax.swing.JTextField textCodigo;
     private javax.swing.JTextField textNom;
