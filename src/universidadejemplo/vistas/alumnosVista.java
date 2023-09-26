@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import universidadejemplo.Entidades.Alumno;
 import universidadejemplo.accesoADatos.AlumnoData;
 import universidadejemplo.accesoADatos.miConexion;
+import validacion.ValidacionDeIngresos;
 
 /**
  *
@@ -171,22 +172,20 @@ public class alumnosVista extends javax.swing.JInternalFrame {
                                                 .addComponent(OptionEstado)
                                                 .addComponent(TextLegajo, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel2)
-                                                .addGap(242, 242, 242))
+                                            .addComponent(jLabel2)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(134, 134, 134)
                                                 .addComponent(textDocu, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addGap(195, 195, 195))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButtonNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                        .addComponent(jButtonNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(ButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
                         .addGap(8, 8, 8)
                         .addComponent(jButtonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                        .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
                         .addGap(4, 4, 4))
@@ -201,12 +200,12 @@ public class alumnosVista extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextLegajo)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(5, 5, 5)
-                        .addComponent(LabelLegajo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(LabelLegajo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(TextLegajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addComponent(textDocu))
@@ -215,17 +214,17 @@ public class alumnosVista extends javax.swing.JInternalFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(textApe))
+                    .addComponent(textApe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textNom)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(5, 5, 5)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(textNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(OptionEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -274,16 +273,34 @@ public class alumnosVista extends javax.swing.JInternalFrame {
 //        true);
 //        AlumnoData alumnoCon = new AlumnoData();
 //        alumnoCon.guardarAlumno(alumno);
+    if(ValidacionDeIngresos.validarEntero(textDocu.getText()) 
+            && !textApe.getText().isEmpty()
+            && !textNom.getText().isEmpty()){
         CrearAlumno();
         AlumnoData alum = new AlumnoData();
         alum.guardarAlumno(alumno1);
+    }else{
+        JOptionPane.showMessageDialog(this, "Verifique los campos y sus ingresos");
+    }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // TODO add your handling code here:
         String id = JOptionPane.showInputDialog(null, "ingrese el Legajo del Alumno a eliminar");
         //crear metodo de validacion ingreso mas tarde NumberFormatException
-        try {
+        if(ValidacionDeIngresos.validarEntero(id)){
+        int idAlu = Integer.parseInt(id);
+            AlumnoData alum = new AlumnoData();
+            alum.eliminarAlumno(idAlu);
+            TextLegajo.setText("");
+            textNom.setText("");
+            textApe.setText("");
+            textDocu.setText("");
+            textFecha.setText("");
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingreso invalido, ingre un numero");
+        }
+        /*try {
             int idAlu = Integer.parseInt(id);
             AlumnoData alum = new AlumnoData();
             alum.eliminarAlumno(idAlu);
@@ -295,7 +312,7 @@ public class alumnosVista extends javax.swing.JInternalFrame {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingreso invalido, ingre un numero");
         }
-
+        */
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
@@ -306,7 +323,7 @@ public class alumnosVista extends javax.swing.JInternalFrame {
         switch (opciones) {
             case "Buscar por dni":
                 String dni = JOptionPane.showInputDialog("Ingrese el dni");
-
+                if(ValidacionDeIngresos.validarEntero(dni)){
                 int dni1 = Integer.parseInt(dni);
                 System.out.println("Ingreso un dni " + dni);
                 AlumnoData alum = new AlumnoData();
@@ -316,10 +333,13 @@ public class alumnosVista extends javax.swing.JInternalFrame {
                 textDocu.setText(String.valueOf(alumno1.getDni()));
                 textNom.setText(alumno1.getNombre());
                 textFecha.setText(String.valueOf(alumno1.getFecha_nacimiento()));
+                }else{
+                    JOptionPane.showMessageDialog(this, "Ingreso invalido, ingrese un numero de DNI");
+                }
                 break;
             case "Buscar por id":
                 String id = JOptionPane.showInputDialog("Ingrese el id");
-
+                if(ValidacionDeIngresos.validarEntero(id)){
                 int miId = Integer.parseInt(id);
                 System.out.println("Ingreso un id " + id);
                 AlumnoData aluid = new AlumnoData();
@@ -329,6 +349,9 @@ public class alumnosVista extends javax.swing.JInternalFrame {
                 textDocu.setText(String.valueOf(alumno1.getDni()));
                 textNom.setText(alumno1.getNombre());
                 textFecha.setText(String.valueOf(alumno1.getFecha_nacimiento()));
+                }else{
+                    JOptionPane.showMessageDialog(this, "Ingrese in valor numerico");
+                }
                 break;
 
         }
@@ -338,15 +361,25 @@ public class alumnosVista extends javax.swing.JInternalFrame {
     private void ButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonModificarActionPerformed
         Alumno alumno1 = new Alumno();
         AlumnoData alumData = new AlumnoData();
+        if(ValidacionDeIngresos.validarEntero(textDocu.getText()) &&
+                !textApe.getText().isEmpty() &&
+                !textNom.getText().isEmpty()){
         alumno1.setId_alumno(Integer.parseInt(TextLegajo.getText()));
+        
         alumno1.setDni(Integer.parseInt(textDocu.getText()));
+        
+            
+        
         alumno1.setApellido(textApe.getText());
         alumno1.setNombre(textNom.getText());
         alumno1.setEstado(true);
+        //verificar validacion para la fecha o usar calendar
         alumno1.setFecha_nacimiento(Date.valueOf(textFecha.getText()));
         
         alumData.modificarAlumno(alumno1);
-        
+        }else{
+            JOptionPane.showMessageDialog(this, "Verifique que los campos ingresados correspopndan al tipo de dato a m odificar /n");
+        }
     }//GEN-LAST:event_ButtonModificarActionPerformed
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
@@ -378,6 +411,7 @@ public class alumnosVista extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     public Alumno CrearAlumno() {
+        
         int dni = Integer.parseInt(textDocu.getText());
         String nombre = textNom.getText();
         String apellido = textApe.getText();
