@@ -284,9 +284,9 @@ public class alumnosVista extends javax.swing.JInternalFrame {
 //        alumnoCon.guardarAlumno(alumno);
     if(!ValidacionDeIngresos.validarEntero(textDocu.getText()) ){
         JOptionPane.showMessageDialog(this, "Ingreso invalido , el DNI debe ser un numero");
-    }else if(!textApe.getText().isEmpty()){
+    }else if(textApe.getText().isEmpty()){
         JOptionPane.showMessageDialog(this, "El campo Apellido no puede estar vacio");
-    }else if(!textNom.getText().isEmpty()){
+    }else if(textNom.getText().isEmpty()){
         JOptionPane.showMessageDialog(this, "El campo Nombre no puede estar vacio");
     }else{
         CrearAlumno();
@@ -400,10 +400,10 @@ public class alumnosVista extends javax.swing.JInternalFrame {
         if (!ValidacionDeIngresos.validarEntero(textDocu.getText())) {
             JOptionPane.showMessageDialog(this, "Verifique que el dni sea un numero");
 
-        } else if (!textApe.getText().isEmpty()) {
+        } else if (textApe.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "No puede estar el campo Apellido vacio");
 
-        } else if (!textNom.getText().isEmpty()) {
+        } else if (textNom.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "No puede estar el campo Nombre vacio");
         } else {
             alumno1.setId_alumno(Integer.parseInt(TextLegajo.getText()));
