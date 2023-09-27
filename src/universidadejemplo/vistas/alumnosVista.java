@@ -282,14 +282,16 @@ public class alumnosVista extends javax.swing.JInternalFrame {
 //        true);
 //        AlumnoData alumnoCon = new AlumnoData();
 //        alumnoCon.guardarAlumno(alumno);
-    if(ValidacionDeIngresos.validarEntero(textDocu.getText()) 
-            && !textApe.getText().isEmpty()
-            && !textNom.getText().isEmpty()){
+    if(!ValidacionDeIngresos.validarEntero(textDocu.getText()) ){
+        JOptionPane.showMessageDialog(this, "Ingreso invalido , el DNI debe ser un numero");
+    }else if(!textApe.getText().isEmpty()){
+        JOptionPane.showMessageDialog(this, "El campo Apellido no puede estar vacio");
+    }else if(!textNom.getText().isEmpty()){
+        JOptionPane.showMessageDialog(this, "El campo Nombre no puede estar vacio");
+    }else{
         CrearAlumno();
         AlumnoData alum = new AlumnoData();
         alum.guardarAlumno(alumno1);
-    }else{
-        JOptionPane.showMessageDialog(this, "Verifique los campos y sus ingresos");
     }
     TextLegajo.setText("");
         textNom.setText("");
@@ -352,33 +354,33 @@ public class alumnosVista extends javax.swing.JInternalFrame {
         switch (opciones) {
             case "Buscar por dni":
                 String dni = JOptionPane.showInputDialog("Ingrese el dni");
-                if(ValidacionDeIngresos.validarEntero(dni)){
-                int dni1 = Integer.parseInt(dni);
-                System.out.println("Ingreso un dni " + dni);
-                AlumnoData alum = new AlumnoData();
-                alumno1 = alum.buscarAlumnoPorDni(dni1);
-                TextLegajo.setText(alumno1.getId_alumno() + "");
-                textApe.setText(alumno1.getApellido());
-                textDocu.setText(String.valueOf(alumno1.getDni()));
-                textNom.setText(alumno1.getNombre());
-                textFecha.setText(String.valueOf(alumno1.getFecha_nacimiento()));
-                }else{
+                if (ValidacionDeIngresos.validarEntero(dni)) {
+                    int dni1 = Integer.parseInt(dni);
+                    System.out.println("Ingreso un dni " + dni);
+                    AlumnoData alum = new AlumnoData();
+                    alumno1 = alum.buscarAlumnoPorDni(dni1);
+                    TextLegajo.setText(alumno1.getId_alumno() + "");
+                    textApe.setText(alumno1.getApellido());
+                    textDocu.setText(String.valueOf(alumno1.getDni()));
+                    textNom.setText(alumno1.getNombre());
+                    textFecha.setText(String.valueOf(alumno1.getFecha_nacimiento()));
+                } else {
                     JOptionPane.showMessageDialog(this, "Ingreso invalido, ingrese un numero de DNI");
                 }
                 break;
             case "Buscar por id":
                 String id = JOptionPane.showInputDialog("Ingrese el id");
-                if(ValidacionDeIngresos.validarEntero(id)){
-                int miId = Integer.parseInt(id);
-                System.out.println("Ingreso un id " + id);
-                AlumnoData aluid = new AlumnoData();
-                alumno1 = aluid.buscarAlumnoPorID(miId);
-                TextLegajo.setText(id);
-                textApe.setText(alumno1.getApellido());
-                textDocu.setText(String.valueOf(alumno1.getDni()));
-                textNom.setText(alumno1.getNombre());
-                textFecha.setText(String.valueOf(alumno1.getFecha_nacimiento()));
-                }else{
+                if (ValidacionDeIngresos.validarEntero(id)) {
+                    int miId = Integer.parseInt(id);
+                    System.out.println("Ingreso un id " + id);
+                    AlumnoData aluid = new AlumnoData();
+                    alumno1 = aluid.buscarAlumnoPorID(miId);
+                    TextLegajo.setText(id);
+                    textApe.setText(alumno1.getApellido());
+                    textDocu.setText(String.valueOf(alumno1.getDni()));
+                    textNom.setText(alumno1.getNombre());
+                    textFecha.setText(String.valueOf(alumno1.getFecha_nacimiento()));
+                } else {
                     JOptionPane.showMessageDialog(this, "Ingrese in valor numerico");
                 }
                 break;
@@ -389,41 +391,43 @@ public class alumnosVista extends javax.swing.JInternalFrame {
         Eliminar.setEnabled(true);
         Nuevo.setEnabled(true);
         Guardar.setEnabled(false);
-        
+
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
         Alumno alumno1 = new Alumno();
         AlumnoData alumData = new AlumnoData();
-        if(ValidacionDeIngresos.validarEntero(textDocu.getText()) &&
-                !textApe.getText().isEmpty() &&
-                !textNom.getText().isEmpty()){
-        alumno1.setId_alumno(Integer.parseInt(TextLegajo.getText()));
-        
-        alumno1.setDni(Integer.parseInt(textDocu.getText()));
-        
-            
-        
-        alumno1.setApellido(textApe.getText());
-        alumno1.setNombre(textNom.getText());
-        alumno1.setEstado(true);
-        //verificar validacion para la fecha o usar calendar
-        alumno1.setFecha_nacimiento(Date.valueOf(textFecha.getText()));
-        
-        alumData.modificarAlumno(alumno1);
-        }else{
-            JOptionPane.showMessageDialog(this, "Verifique que los campos ingresados correspopndan al tipo de dato a m odificar /n");
+        if (!ValidacionDeIngresos.validarEntero(textDocu.getText())) {
+            JOptionPane.showMessageDialog(this, "Verifique que el dni sea un numero");
+
+        } else if (!textApe.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No puede estar el campo Apellido vacio");
+
+        } else if (!textNom.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No puede estar el campo Nombre vacio");
+        } else {
+            alumno1.setId_alumno(Integer.parseInt(TextLegajo.getText()));
+
+            alumno1.setDni(Integer.parseInt(textDocu.getText()));
+
+            alumno1.setApellido(textApe.getText());
+            alumno1.setNombre(textNom.getText());
+            alumno1.setEstado(true);
+            //verificar validacion para la fecha o usar calendar
+            alumno1.setFecha_nacimiento(Date.valueOf(textFecha.getText()));
+
+            alumData.modificarAlumno(alumno1);
         }
-        
-     Nuevo.setEnabled(true);
-     Modificar.setEnabled(false);
-     Guardar.setEnabled(false);
-     Eliminar.setEnabled(false);
-     TextLegajo.setText("");
-     textNom.setText("");
-     textApe.setText("");
-     textDocu.setText("");
-     textFecha.setText("");
+
+        Nuevo.setEnabled(true);
+        Modificar.setEnabled(false);
+        Guardar.setEnabled(false);
+        Eliminar.setEnabled(false);
+        TextLegajo.setText("");
+        textNom.setText("");
+        textApe.setText("");
+        textDocu.setText("");
+        textFecha.setText("");
     }//GEN-LAST:event_ModificarActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
@@ -456,7 +460,7 @@ public class alumnosVista extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     public Alumno CrearAlumno() {
-        
+         
         int dni = Integer.parseInt(textDocu.getText());
         String nombre = textNom.getText();
         String apellido = textApe.getText();

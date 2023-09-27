@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import universidadejemplo.Entidades.Materia;
 import universidadejemplo.accesoADatos.AlumnoData;
 import universidadejemplo.accesoADatos.materiaData;
+import validacion.ValidacionDeIngresos;
 
 /**
  *
@@ -230,16 +231,19 @@ public class materiaVista extends javax.swing.JInternalFrame {
 
             case "Buscar por id":
                 String id = JOptionPane.showInputDialog("Ingrese el id");
-
-                int miId = Integer.parseInt(id);
-                System.out.println("Ingreso un id " + miId);
-                materiaData mateid = new materiaData();
-                materia1 = mateid.buscarMateriaPorID(miId);
-                textCodigo.setText(miId + "");
+                if (ValidacionDeIngresos.validarEntero(id)) {
+                    int miId = Integer.parseInt(id);
+                    System.out.println("Ingreso un id " + miId);
+                    materiaData mateid = new materiaData();
+                    materia1 = mateid.buscarMateriaPorID(miId);
+                    textCodigo.setText(miId + "");
 //              textCodigo.setText(String.valueOf(materia1.getId_materia()));
-                textNom.setText(materia1.getNombre());
-                textAño.setText(String.valueOf(materia1.getAño()));
-                botonEstado.setSelected(true);
+                    textNom.setText(materia1.getNombre());
+                    textAño.setText(String.valueOf(materia1.getAño()));
+                    botonEstado.setSelected(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, "El ingreso debe ser un numero");
+                }
                 break;
 
         }
@@ -250,19 +254,24 @@ public class materiaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-        // TODO add your handling code here:
-        CrearMateria();
-        materiaData mate = new materiaData();
-        mate.guardarMateria(materia1);
-        
-        textCodigo.setText("");
-        textNom.setText("");
-        textAño.setText("");
-        Buscar.setEnabled(true);
-        Nuevo.setEnabled(true);
-        Modificar.setEnabled(false);
-        Guardar.setEnabled(false);
-        Eliminar.setEnabled(false);
+        if (textNom.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El campo de Nombre no puede estar vacio");
+        } else if (!ValidacionDeIngresos.validarEntero(textAño.getText())) {
+            JOptionPane.showMessageDialog(this, "El ingreso de año debe ser un entero");
+        } else {
+            CrearMateria();
+            materiaData mate = new materiaData();
+            mate.guardarMateria(materia1);
+
+            textCodigo.setText("");
+            textNom.setText("");
+            textAño.setText("");
+            Buscar.setEnabled(true);
+            Nuevo.setEnabled(true);
+            Modificar.setEnabled(false);
+            Guardar.setEnabled(false);
+            Eliminar.setEnabled(false);
+        }
 
     }//GEN-LAST:event_GuardarActionPerformed
 
@@ -281,8 +290,8 @@ public class materiaVista extends javax.swing.JInternalFrame {
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
 
         String id = JOptionPane.showInputDialog(null, "ingrese el ID de la materia a eliminar");
+        if (ValidacionDeIngresos.validarEntero(id)) {
 
-        try {
             int idmate = Integer.parseInt(id);
             materiaData md = new materiaData();
             md.eliminarMateria(idmate);
@@ -295,8 +304,8 @@ public class materiaVista extends javax.swing.JInternalFrame {
             Guardar.setEnabled(false);
             Eliminar.setEnabled(false);
             JOptionPane.showMessageDialog(null, "Se eliminó la materia");
-            
-        } catch (NumberFormatException e) {
+        } else {
+
             JOptionPane.showMessageDialog(null, "Ingreso invalido, ingre un numero");
         }
     }//GEN-LAST:event_EliminarActionPerformed

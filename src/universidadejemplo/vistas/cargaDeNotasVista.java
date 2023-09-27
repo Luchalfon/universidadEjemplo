@@ -7,11 +7,13 @@ package universidadejemplo.vistas;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidadejemplo.Entidades.Alumno;
 import universidadejemplo.Entidades.Inscripcion;
 import universidadejemplo.accesoADatos.AlumnoData;
 import universidadejemplo.accesoADatos.inscripcionData;
+import validacion.ValidacionDeIngresos;
 
 /**
  *
@@ -280,12 +282,17 @@ public class cargaDeNotasVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        cambioNota = Double.parseDouble(jTable1.getValueAt(filaSelect, 2).toString());
-        inscripcionData insc = new inscripcionData();
-        System.out.println("nota seleccionada 2 "+cambioNota);
-        insc.actualizarNota(id_aluSelect, idMateriaSelect, cambioNota);
-        modelo.setRowCount(0);
-        llenarTabla();
+        if (ValidacionDeIngresos.validarDouble(jTable1.getValueAt(filaSelect, 2).toString())) {
+            cambioNota = Double.parseDouble(jTable1.getValueAt(filaSelect, 2).toString());
+            inscripcionData insc = new inscripcionData();
+            System.out.println("nota seleccionada 2 " + cambioNota);
+            insc.actualizarNota(id_aluSelect, idMateriaSelect, cambioNota);
+            modelo.setRowCount(0);
+            llenarTabla();
+        } else {
+            JOptionPane.showMessageDialog(this, "El valor para Nota no es un ingreso valido");
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void comboAlumno1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAlumno1ActionPerformed
