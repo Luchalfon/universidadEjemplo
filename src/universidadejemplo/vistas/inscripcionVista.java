@@ -8,6 +8,7 @@ package universidadejemplo.vistas;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidadejemplo.Entidades.Alumno;
 import universidadejemplo.Entidades.Materia;
@@ -238,7 +239,8 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
             idMateriaSelect = (Integer) jTable1.getValueAt(filaSelect, 0);
             materiasl = mateData.buscarMateriaPorID(idMateriaSelect);
             
-        }
+            }
+       
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
@@ -248,9 +250,18 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
     private void BotonInscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInscActionPerformed
         Inscripcion insc = new Inscripcion(0,aluSelect, materiasl);
         inscripcionData inscData = new inscripcionData();
-        inscData.guardarInscripcion(insc);
+        
+        if (idMateriaSelect==0){
+            JOptionPane.showMessageDialog(this, "Seleccione una Materia");
+        }else{
+            inscData.guardarInscripcion(insc);
         modelo.setRowCount(0);
         llenarNoCursada();
+        idMateriaSelect=0;
+        }
+        
+        
+        
     }//GEN-LAST:event_BotonInscActionPerformed
 
     private void BotonAnularInscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAnularInscActionPerformed

@@ -293,7 +293,7 @@ public class alumnosVista extends javax.swing.JInternalFrame {
         AlumnoData alum = new AlumnoData();
         alum.guardarAlumno(alumno1);
     }
-    TextLegajo.setText("");
+        TextLegajo.setText("");
         textNom.setText("");
         textApe.setText("");
         textDocu.setText("");
@@ -415,15 +415,11 @@ public class alumnosVista extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "No puede estar el campo Nombre vacio");
         } else {
             alumno1.setId_alumno(Integer.parseInt(TextLegajo.getText()));
-
             alumno1.setDni(Integer.parseInt(textDocu.getText()));
-
             alumno1.setApellido(textApe.getText());
             alumno1.setNombre(textNom.getText());
             alumno1.setEstado(true);
-            //verificar validacion para la fecha o usar calendar
             alumno1.setFecha_nacimiento(Date.valueOf(textFecha.getText()));
-
             alumData.modificarAlumno(alumno1);
         }
 
