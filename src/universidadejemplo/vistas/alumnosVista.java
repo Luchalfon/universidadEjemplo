@@ -359,11 +359,15 @@ public class alumnosVista extends javax.swing.JInternalFrame {
                     System.out.println("Ingreso un dni " + dni);
                     AlumnoData alum = new AlumnoData();
                     alumno1 = alum.buscarAlumnoPorDni(dni1);
+                    try{
                     TextLegajo.setText(alumno1.getId_alumno() + "");
                     textApe.setText(alumno1.getApellido());
                     textDocu.setText(String.valueOf(alumno1.getDni()));
                     textNom.setText(alumno1.getNombre());
                     textFecha.setText(String.valueOf(alumno1.getFecha_nacimiento()));
+                    }catch(NullPointerException e){
+                        JOptionPane.showMessageDialog(this, "No se pudo cargar el alumno");
+                    }
                 } else {
                     JOptionPane.showMessageDialog(this, "Ingreso invalido, ingrese un numero de DNI");
                 }
@@ -375,11 +379,15 @@ public class alumnosVista extends javax.swing.JInternalFrame {
                     System.out.println("Ingreso un id " + id);
                     AlumnoData aluid = new AlumnoData();
                     alumno1 = aluid.buscarAlumnoPorID(miId);
+                    try{
                     TextLegajo.setText(id);
                     textApe.setText(alumno1.getApellido());
                     textDocu.setText(String.valueOf(alumno1.getDni()));
                     textNom.setText(alumno1.getNombre());
                     textFecha.setText(String.valueOf(alumno1.getFecha_nacimiento()));
+                    }catch(NullPointerException e){
+                        JOptionPane.showMessageDialog(this, "No se pudo cargar el alumno");
+                    }
                 } else {
                     JOptionPane.showMessageDialog(this, "Ingrese in valor numerico");
                 }
