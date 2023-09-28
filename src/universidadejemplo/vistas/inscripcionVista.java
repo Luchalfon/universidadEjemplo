@@ -36,10 +36,10 @@ public class inscripcionVista extends javax.swing.JInternalFrame {
     }
     private Connection con;
     Alumno aluSelect;
-    int id_aluSelect;
-    int idMateriaSelect;
-    Materia materiasl = new Materia();
-    materiaData mateData = new materiaData();
+    private int id_aluSelect;
+    private int idMateriaSelect;
+    private Materia materiasl = new Materia();
+    private materiaData mateData = new materiaData();
 
     /**
      * This method is called from within the constructor to initialize the form.

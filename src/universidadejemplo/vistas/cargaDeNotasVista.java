@@ -35,7 +35,7 @@ public class cargaDeNotasVista extends javax.swing.JInternalFrame {
     private int id_aluSelect;
     private double cambioNota;
     private int idMateriaSelect;
-    int filaSelect;
+    private int filaSelect;
 
     /**
      * This method is called from within the constructor to initialize the form.
